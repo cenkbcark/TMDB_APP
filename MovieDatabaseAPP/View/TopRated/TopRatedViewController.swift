@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class TopRatedViewController: UIViewController {
+final class TopRatedViewController: UIViewController {
     
     @IBOutlet weak var topRatedImage: UIImageView!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
@@ -21,43 +21,11 @@ class TopRatedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        getTopRatedMovies { movies in
-            self.topRatedMovieList = movies
-            self.moviesCollectionView.reloadData()
-        }
-        getTopRatedTVs { series in
-            self.topRatedTVList = series
-            self.tvsCollectionView.reloadData()
-        }
-    }
-    
-    
-    
-    
-    private func getTopRatedMovies(completion: @escaping (([Movies]) -> ())){
-        
-        let url = "https://api.themoviedb.org/3/movie/top_rated?api_key=87fd921402216fc7603c5c63d278f30c&language=en-US&page=1"
-        
-        NetworkService.shared.fetchTopRatedMovieData(from: url) { response in
-            guard let movies = response.results else {return}
-            
-            completion(movies)
-        }
+        setTopRatedMovies(from: self)
+        setTopRatedTvs(from: self)
         
     }
-    private func getTopRatedTVs(completion: @escaping (([TVs]) -> ())){
-        
-        let url = "https://api.themoviedb.org/3/tv/top_rated?api_key=87fd921402216fc7603c5c63d278f30c&language=en-US&page=1"
-        
-        NetworkService.shared.fetchTopRatedTvData(from: url) { response in
-            guard let tvs = response.results else {return}
-            
-            completion(tvs)
-        }
-        
-    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "forMovie" {
@@ -104,14 +72,18 @@ extension TopRatedViewController: UICollectionViewDelegate,UICollectionViewDataS
         switch collectionView{
         case moviesCollectionView:
             let movie = topRatedMovieList[indexPath.row]
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "moviesCell", for: indexPath) as! TopRatedCell
-            cell.topRatedImage.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original\(movie.poster_path!)"))
-            return cell
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "moviesCell", for: indexPath) as? TopRatedCell{
+                cell.setMovie(from: movie)
+                return cell
+            }
+            return UICollectionViewCell()
         case tvsCollectionView:
             let tvs = topRatedTVList[indexPath.row]
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tvsCell", for: indexPath) as! TopRatedTvCell
-            cell.tvImage.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original\(tvs.poster_path!)"))
-            return cell
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tvsCell", for: indexPath) as? TopRatedTvCell{
+                cell.setTvs(from: tvs)
+                return cell
+            }
+            return UICollectionViewCell()
         default:
             return UICollectionViewCell()
         }

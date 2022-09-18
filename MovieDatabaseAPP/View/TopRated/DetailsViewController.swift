@@ -9,12 +9,12 @@ import UIKit
 import Kingfisher
 import youtube_ios_player_helper
 
-class DetailsViewController: UIViewController {
+final class DetailsViewController: UIViewController {
     //UI
-    @IBOutlet weak var selectedVote: UILabel!
-    @IBOutlet weak var selectedDate: UILabel!
-    @IBOutlet weak var selectedOverview: UILabel!
-    @IBOutlet weak var selectedTitle: UILabel!
+    @IBOutlet weak private var selectedVote: UILabel!
+    @IBOutlet weak private var selectedDate: UILabel!
+    @IBOutlet weak private var selectedOverview: UILabel!
+    @IBOutlet weak private var selectedTitle: UILabel!
     //SEGUE
     var selectedMovie : Movies?
     var selectedTv : TVs?
@@ -29,48 +29,16 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(selectedID)
+        
         checkData()
         if selectedChoice == "Movie"{
-            getMovieVideo(dataID: selectedID!){ video in
-                self.selectedMovieVideo = video
-                if self.selectedChoice == "Movie"{
-                    for video in video {
-                        if video.site == .youTube{
-                            if video.size == 1080{
-                                if video.type == .trailer{
-                                    self.videoKey = video.key
-                                    print(self.videoKey as Any)
-                                    self.playerView.load(withVideoId: self.videoKey!)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            setMovieVideo(dataID: selectedID!, VC: self)
         }else{
-            getTvVideo(dataID: selectedID!) { video in
-                self.selectedTvVideo = video
-                for video in video{
-                    if video.site == "YouTube"{
-                        if video.size == 1080 {
-                            if video.type == "Trailer"{
-                                self.videoKey = video.key
-                                print(self.videoKey as Any)
-                                self.playerView.load(withVideoId: self.videoKey!)
-                            }
-                        }
-                    }
-                }
-            }
+            setTvVideo(dataID: selectedID!, VC: self)
         }
         
-        
-        
-        
-        
     }
-    func checkData(){
+    private func checkData(){
         switch selectedChoice{
         case "Movie":
             selectedVote.text = "Vote Average: \(selectedMovie?.vote_average ?? 0.0)"
@@ -86,32 +54,4 @@ class DetailsViewController: UIViewController {
             print("no data incoming")
         }
     }
-    
-    private func getMovieVideo(dataID:Int,completion: @escaping (([MovieVideo]) -> ())){
-        
-
-        let url = "http://api.themoviedb.org/3/movie/\(dataID)/videos?api_key=87fd921402216fc7603c5c63d278f30c"
-        
-        VideoService.shared.fetchTopRatedMovieData(from: url) { response in
-            
-            guard let video = response.results else { return }
-            completion(video)
-        }
-    }
-    
-    private func getTvVideo(dataID:Int,completion: @escaping (([TvVideo]) -> ())){
-        
-
-        let url = "http://api.themoviedb.org/3/tv/\(dataID)/videos?api_key=87fd921402216fc7603c5c63d278f30c"
-        
-        VideoService.shared.fetchTopRatedTvData(from: url) { response in
-            
-            guard let video = response.results else { return }
-            
-            completion(video)
-        }
-    }
-    
-    
-
 }

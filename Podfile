@@ -7,8 +7,8 @@ target 'MovieDatabaseAPP' do
 
   # Pods for MovieDatabaseAPP
 pod 'Kingfisher', '~> 7.0'
-pod 'ImageSlideshow', '~> 1.9.0'
 pod "youtube-ios-player-helper"
+
 
   target 'MovieDatabaseAPPTests' do
     inherit! :search_paths
