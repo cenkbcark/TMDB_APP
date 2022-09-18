@@ -1,0 +1,26 @@
+PODS:
+  - ImageSlideshow (1.9.2):
+    - ImageSlideshow/Core (= 1.9.2)
+  - ImageSlideshow/Core (1.9.2)
+  - Kingfisher (7.3.2)
+  - youtube-ios-player-helper (1.0.4)
+
+DEPENDENCIES:
+  - ImageSlideshow (~> 1.9.0)
+  - Kingfisher (~> 7.0)
+  - youtube-ios-player-helper
+
+SPEC REPOS:
+  trunk:
+    - ImageSlideshow
+    - Kingfisher
+    - youtube-ios-player-helper
+
+SPEC CHECKSUMS:
+  ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
+  Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
+  youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
+
+PODFILE CHECKSUM: d560cf2fc2c377249300c8860fa3817e9b1e614a
+
+COCOAPODS: 1.11.3
