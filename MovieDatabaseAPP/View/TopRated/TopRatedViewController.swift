@@ -3,7 +3,7 @@
 //  MovieDatabaseAPP
 //
 //  Created by Cenk Bahadır Çark on 17.09.2022.
-//
+//......
 
 import UIKit
 import Kingfisher
