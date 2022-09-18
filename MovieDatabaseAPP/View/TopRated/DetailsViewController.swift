@@ -25,6 +25,7 @@ class DetailsViewController: UIViewController {
     var selectedID : Int?
     //PLAYER
     @IBOutlet weak var playerView: YTPlayerView!
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad()
