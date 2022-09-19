@@ -8,26 +8,31 @@
 import UIKit
 import Kingfisher
 
-class UpComingViewController: UIViewController {
+final class UpComingViewController: UIViewController {
     
+    @IBOutlet weak var collectionView: UICollectionView!
     var upComingMovieList = [UpComingMovie]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getUpComingMovies { upComingMovie in
-            self.upComingMovieList = upComingMovie
-        }
+        setUpComingMovies(VC: self)
         
     }
+}
+extension UpComingViewController: UICollectionViewDelegate,UICollectionViewDataSource{
     
-    private func getUpComingMovies(completion: @escaping (([UpComingMovie]) -> ())){
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return upComingMovieList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let url = "https://api.themoviedb.org/3/movie/upcoming?api_key=87fd921402216fc7603c5c63d278f30c&language=en-US&page=1"
-        
-        upComingService.shared.fethUpComingMovie(from: url) { upComingMovie in
-            guard let upMovies = upComingMovie.results else { return }
-            completion(upMovies)
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upComingCell", for: indexPath) as? UpComingMovieCell{
+            let movie = upComingMovieList[indexPath.row]
+            cell.setUpComing(from: movie)
+            return cell
         }
+        return UICollectionViewCell()
     }
 }
