@@ -9,7 +9,7 @@ import Foundation
 
 func getTopRatedMovies(completion: @escaping (([Movies]) -> ())){
     
-    let url = "https://api.themoviedb.org/3/movie/top_rated?api_key=87fd921402216fc7603c5c63d278f30c&language=en-US&page=1"
+    let url = ""
     
     NetworkService.shared.fetchTopRatedMovieData(from: url) { response in
         guard let movies = response.results else {return}
