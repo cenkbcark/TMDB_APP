@@ -38,3 +38,17 @@ Their release date.
 <h2>Screenshoots and Demo</h2>
 
 
+<img width="386" alt="Ekran Resmi 2022-09-21 22 18 34" src="https://user-images.githubusercontent.com/79763515/191600041-dcd42361-e8db-43bb-8ef1-b2c7d2e93012.PNG">
+
+
+<img width="401" alt="Ekran Resmi 2022-09-21 22 18 43" src="https://user-images.githubusercontent.com/79763515/191600072-7cbcbfef-3bd3-431a-876c-8938389a5cca.PNG">
+
+
+
+<img width="368" alt="Ekran Resmi 2022-09-21 22 18 51" src="https://user-images.githubusercontent.com/79763515/191600090-868e0caa-bf9c-4542-9ee1-d11e7d75cc06.PNG">
+
+
+
+
+
+
