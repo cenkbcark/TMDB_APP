@@ -15,4 +15,10 @@ class TopRatedTvCell: UICollectionViewCell {
         tvImage.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original\(tvs.poster_path!)"))
     }
     
+    func configureCell(from cell: TopRatedTvCell){
+        cell.layer.cornerRadius = 15.0
+        cell.layer.borderWidth = 2.0
+        cell.layer.borderColor = UIColor.black.cgColor
+    }
+    
 }

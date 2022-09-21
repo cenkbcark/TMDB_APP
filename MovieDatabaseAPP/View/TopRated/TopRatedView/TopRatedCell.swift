@@ -14,4 +14,10 @@ class TopRatedCell: UICollectionViewCell {
     func setMovie(from movie: Movies){
         topRatedImage.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/original\(movie.poster_path!)"))
     }
+    
+    func configureCell(from cell: TopRatedCell){
+        cell.layer.cornerRadius = 15.0
+        cell.layer.borderWidth = 2.0
+        cell.layer.borderColor = UIColor.black.cgColor
+    }
 }

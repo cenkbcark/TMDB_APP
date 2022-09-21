@@ -73,6 +73,7 @@ extension TopRatedViewController: UICollectionViewDelegate,UICollectionViewDataS
         case moviesCollectionView:
             let movie = topRatedMovieList[indexPath.row]
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "moviesCell", for: indexPath) as? TopRatedCell{
+                cell.configureCell(from: cell)
                 cell.setMovie(from: movie)
                 return cell
             }
@@ -80,6 +81,7 @@ extension TopRatedViewController: UICollectionViewDelegate,UICollectionViewDataS
         case tvsCollectionView:
             let tvs = topRatedTVList[indexPath.row]
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tvsCell", for: indexPath) as? TopRatedTvCell{
+                cell.configureCell(from: cell)
                 cell.setTvs(from: tvs)
                 return cell
             }
