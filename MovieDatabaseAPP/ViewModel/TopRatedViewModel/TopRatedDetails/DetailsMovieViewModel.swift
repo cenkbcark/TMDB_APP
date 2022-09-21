@@ -10,7 +10,7 @@ import Foundation
 func getMovieVideo(dataID:Int,completion: @escaping (([MovieVideo]) -> ())){
     
 
-    let url = "http://api.themoviedb.org/3/movie/\(dataID)/videos?api_key=87fd921402216fc7603c5c63d278f30c"
+    let url = ""
     
     VideoService.shared.fetchTopRatedMovieData(from: url) { response in
         
